@@ -8,4 +8,5 @@ npm install
 rm make.sh
 rm cleanup.sh
 rm -fR ./stack/
+gulp install
 gulp

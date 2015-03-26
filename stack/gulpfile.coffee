@@ -12,7 +12,24 @@ handlebars        = require 'handlebars'
 handlebarsLayouts = require 'handlebars-layouts'
 notify            = require 'gulp-notify'
 
-handlebarsLayouts.register handlebars
+gulp.task 'install', ->
+
+  # Register Handlebars
+  handlebarsLayouts.register handlebars
+
+  # Disallow .htaccess redirection www.example.com -> example.com
+  htaccess = fs.readFileSync "#{__dirname}/.htaccess"
+  htaccess = "#{htaccess}".replace /(www.example.com → example.com)([\s\S]*?)(<\/IfModule>)/gmi, '$1\n# Deleted.'
+
+  # Allow .htaccess redirection example.com -> www.example.com
+  pieceReg = new RegExp /(# Option 2:)([\s\S]*?)(# (<IfModule mod_rewrite\.c>)\n)([\s\S]*?)(# (<\/IfModule>))/gmi
+  allReg = new RegExp /([\s\S]*?)(# Option 2:)([\s\S]*?)(# (<IfModule mod_rewrite\.c>)\n)([\s\S]*?)(# (<\/IfModule>))([\s\S]*)/gmi
+  rules = htaccess.replace allReg, "$6"
+  rules = rules.replace /#/gmi, ''
+  htaccess = htaccess.replace pieceReg, "$1$2$4\n#{rules}\n$7"
+
+  fs.writeFileSync "#{__dirname}/.htaccess", htaccess
+
 
 gulp.task 'coffee', ->
   gulp.src ['coffee/*.coffee']
