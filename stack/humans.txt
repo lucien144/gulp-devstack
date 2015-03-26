@@ -1,0 +1,12 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Jan Blasko -- developer -- @lucien144
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3, LESS, Coffeescript, Bower
+    Normalize.css, jQuery, Modernizr, LessHat, HTML5-Reset, HTML5-Boilerplate
+    Codekit 2, Sublime Text 3

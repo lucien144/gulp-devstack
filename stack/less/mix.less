@@ -1,0 +1,96 @@
+/**
+ * Layout mixins
+ */
+.top-left(@top: 0, @left: 0) {
+	position: absolute;
+	top: @top;
+	left: @left;
+}
+// BC
+.absolute(@top: 0, @left: 0) { .top-left(@top, @left); }
+
+.top-right(@top: 0, @right: 0) {
+	position: absolute;
+	top: @top;
+	right: @right;
+}
+
+.bottom-left(@bottom: 0, @left: 0) {
+	position: absolute;
+	bottom: @bottom;
+	left: @left;
+}
+
+.bottom-right(@bottom: 0, @right: 0) {
+	position: absolute;
+	bottom: @bottom;
+	right: @right;
+}
+
+.center() {
+	margin: 0 auto;
+}
+
+.squeezed() {
+	padding: 0; margin: 0;
+}
+
+.column-break-inside(@value) {
+	-webkit-column-break-inside: @value;
+	-moz-column-break-inside: @value;
+	column-break-inside: @value;
+}
+
+
+/**
+ * Design mixins - colors, backgrounds, ...
+ * @type {[type]}
+ */
+.bg(@image, @position: 0 0, @repeat: no-repeat, @color: transparent) {
+	background: @color url(@image) @position @repeat;
+}
+
+.bg-color(@color: #fff) {
+	background-color: @color;
+}
+
+.bg-size(@val: cover) {
+  -webkit-background-size: @val;
+  -moz-background-size: @val;
+  -o-background-size: @val;
+  background-size: @val;
+}
+
+.not-selectable() {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+
+/**
+ * Typography mixins.
+ */
+.font(@family) {
+	font-family: @family;
+}
+
+// Deprecated
+.fSize(@size) {
+	font-size: @size;
+}
+
+.font-antialiasing() {
+	-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+
+
+/**
+ * Other mixins
+ */
+.test() {
+	border: 1px solid #f00;
+}
