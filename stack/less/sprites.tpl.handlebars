@@ -18,13 +18,13 @@
 @{{#clean}}{{name}}{{/clean}}-total_height: {{px.total_height}};
 @{{#clean}}{{name}}{{/clean}}-image: '{{{escaped_image}}}';
 @{{#clean}}{{name}}{{/clean}}: {{px.x}} {{px.y}} {{px.offset_x}} {{px.offset_y}} {{px.width}} {{px.height}} {{px.total_width}} {{px.total_height}} '{{{escaped_image}}}' '{{#clean}}{{name}}{{/clean}}';
-.{{#clean}}{{name}}{{/clean}}() { .sprite(@{{#clean}}{{name}}{{/clean}}); }
-.{{#clean}}{{name}}{{/clean}} { .{{#clean}}{{name}}{{/clean}}() }
+.sprite-{{#clean}}{{name}}{{/clean}}() { .sprite(@{{#clean}}{{name}}{{/clean}}); }
+.sprite-{{#clean}}{{name}}{{/clean}} { .sprite-{{#clean}}{{name}}{{/clean}}() }
 {{#if pseudo}}
-.{{#makepseudo}}{{#clean}}{{name}}{{/clean}}{{/makepseudo}} { .{{#clean}}{{name}}{{/clean}}(); }
+.sprite-{{#makepseudo}}{{#clean}}{{name}}{{/clean}}{{/makepseudo}} { .sprite-{{#clean}}{{name}}{{/clean}}(); }
 {{/if}}
 {{#if highdensity}}
-.{{#clean}}{{#removeHighdensity}}{{name}}{{/removeHighdensity}}{{/clean}}() { @media @highdensity { .{{#clean}}{{name}}{{/clean}}(); background-size: 100%; width: {{px.width}} / 2px; height: {{px.height}} / 2px; } }
+.{{#clean}}{{#removeHighdensity}}{{name}}{{/removeHighdensity}}{{/clean}}() { @media @highdensity { .sprite-{{#clean}}{{name}}{{/clean}}(); background-size: 100%; width: {{px.width}} / 2px; height: {{px.height}} / 2px; } }
 {{/if}}
 
 {{/each}}
@@ -62,14 +62,17 @@
 }
 
 .sprite(@sprite) {
-  display: inline-block;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
   .sprite-image(@sprite);
   .sprite-position(@sprite);
   .sprite-width(@sprite);
   .sprite-height(@sprite);
+}
+
+.sprite {
+  display: inline-block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 {{/if}}
 {{/block}}
