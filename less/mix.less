@@ -57,11 +57,14 @@
 	background-color: @color;
 }
 
-.sprite(@b: inline-block) {
+/**
+ * Scott Kellum image replacement
+ */
+.skir(@b: inline-block) {
 	display: @b; text-indent: 100%; white-space: nowrap; overflow: hidden; border: none;
 }
 .sprite {
-	.sprite();
+	.skir();
 }
 
 .font-antialiasing() {
