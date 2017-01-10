@@ -2,6 +2,7 @@
 
 g = require 'gulp'
 $ = require('gulp-load-plugins')({ lazy: false })
+build = false
 
 browserify = require 'browserify'
 babelify = require 'babelify'
@@ -19,14 +20,14 @@ g.task 'scripts', ->
 
 	return b.bundle()
 		.on 'error', $.notify.onError "Scripts error: <%= error.message %>"
-		.pipe source 'main.min.js'
-    	.pipe buffer()
-		.pipe $.sourcemaps.init {loadMaps: true}
-		    .pipe $.uglify()
-		    .on 'error', $.notify.onError "Scripts error: <%= error.message %>"
+		.pipe source 'main.js'
+		.pipe buffer()
+		.pipe $.if build is true, $.sourcemaps.init {loadMaps: true}
+		.pipe $.if build is true, $.uglify()
 		.pipe $.sourcemaps.write '.'
 		.pipe g.dest path.dist
 		.pipe $.notify 'Scripts processed!'
+		.pipe $.livereload()
 
 g.task 'sprites', ->
 	spriteData = g.src 'images/sprites/*.png'
@@ -48,17 +49,27 @@ g.task 'styles', ->
 		.pipe $.less
 			plugins: [require 'less-plugin-glob']
 		.on 'error', $.notify.onError "Styles error: <%= error.message %>"
-		.pipe $.autoprefixer "> 1%"
-		.pipe $.cssmin keepSpecialComments: 0
+		.pipe $.autoprefixer ["> 1%", "last 2 versions"]
+		.pipe $.if build is true, $.cssmin keepSpecialComments: 0
 		.pipe g.dest path.dist
 		.pipe $.notify 'Styles processed!'
 		.pipe $.livereload()
 
+g.task 'html', ->
+	g.src '*.html'
+		.on 'error', $.notify.onError "HTML error: <%= error.message %>"
+		.pipe $.notify 'HTML reloaded!'
+		.pipe $.livereload()
+
 g.task 'watch', ->
 	$.livereload.listen()
+	g.watch ['*.html'], ['html']
 	g.watch ['images/sprites/*.png'], ['sprites']
 	g.watch ['js/*.js'], ['scripts']
 	g.watch ['less/*.less', 'less/**/*.less'], ['styles']
 
+g.task 'set-build-env', ->
+  build = true
+
 g.task 'default', ['watch']
-g.task 'build', ['sprites', 'scripts', 'styles']
+g.task 'build', ['set-build-env', 'sprites', 'scripts', 'styles']
