@@ -85,7 +85,9 @@ g.task 'html', ->
 g.task 'watch', ->
 	s.init
 		open: false
-		proxy: 'tpl.wcc.nsw.dev.au'
+		# proxy: 'domain.local'
+		server:
+			baseDir: './'
 
 	g.watch ['*.html', '*.php'], g.parallel 'html', (done) ->
 		done()
