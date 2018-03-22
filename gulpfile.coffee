@@ -83,9 +83,9 @@ g.task 'html', ->
 		.pipe s.stream()
 
 g.task 'watch', ->
-    s.init
-        open: false
-        proxy: 'tpl.wcc.nsw.dev.au'
+	s.init
+		open: false
+		proxy: 'tpl.wcc.nsw.dev.au'
 
 	g.watch ['*.html', '*.php'], g.parallel 'html', (done) ->
 		done()
