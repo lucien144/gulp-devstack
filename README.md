@@ -19,7 +19,7 @@ My custom fronted devstack based on Gulp. Feel free to use or modify. Any PR wel
 
 ### Installation
 
-- `npm install`
+- `npm i`
 
 ### Commands
 
@@ -53,20 +53,21 @@ If you create files `sprite.svg` and `sprite-hover.svg`, the `:hover` is added a
 | Mixin / Class | Definition |
 |---------------|------------|
 | `.skir` | Scott Kellum Image Replacement |
-| `.font-antialiasing()` | `-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;` |
-| `.top-left(@top: 0, @left: 0)` | |
-| `.top-right(@top: 0, @right: 0)` | |
-| `.bottom-left(@bottom: 0, @left: 0)` | |
-| `.bottom-right(@bottom: 0, @right: 0)` | |
-| `.size(@width: auto, @height: -1) when (@height = -1)` | |
-| `.size(@width: auto, @height: -1) when not (@height = -1)` | |
-| `.center(@t: 0, @r: auto, @b: 0, @l: auto)` | |
-| `.squeezed()` | |
+| `.font-antialiasing()` | Alias for `-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;` |
+| `.top-left(top: 0, left: 0, z-index: '', position: absolute)` | |
+| `.top-left-f(...)` | Alias for fixed position. |
+| `.top-right(...)` | |
+| `.bottom-left(...)` | |
+| `.bottom-right(...)` | |
+| `.size(@width: auto, [@height: auto])` | Example: .size(10px); .size(10px, 10px); |
+| `.pseudo(@display: inline-block)` | Alias for `display: @display; content: "";` |
 | `.bg(@image, @position: 0 0, @repeat: no-repeat, @color: transparent)` | |
 | `.bgc(@color: #fff)` | |
 | `.test(@c: red)` | |
+| `.triangle-t(@width, @height, @color)` | Makes top triangle. ▲ |
+| `.triangle-b(...)` | Makes bottom triangle. ▼ |
 
 ## Todo
-- [ ] livereload ⃕ browser-sync ?
+- [x] livereload ⃕ browser-sync ?
 - [ ] [less-plugin-npm-import](https://github.com/less/less-plugin-npm-import) ?
 - [x] [gulp-if](https://www.npmjs.com/package/gulp-if), [gulp variables](http://stackoverflow.com/questions/27253597/is-it-possible-to-assign-a-variable-in-a-gulp-task-before-running-dependencies)
