@@ -1,6 +1,6 @@
 # Gulp Devstack
 
-My custom fronted devstack based on Gulp. Feel free to use or modify. Any PR welcomed.
+⚡️ Personal gulp stack for frontend development.
 
 ## Features
 
@@ -12,7 +12,7 @@ My custom fronted devstack based on Gulp. Feel free to use or modify. Any PR wel
 	- Custom mixins
 	- Autoprefix: > 1%, 2 latest versions
 - Images: sprites w/ [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith)
-- Livereload (use w/ [Google Chrome extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei))
+- [Browser-sync](https://browsersync.io/)
 - Mac OS X notifications on error and success
 
 ## Installation & run
