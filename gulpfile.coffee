@@ -77,8 +77,11 @@ g.task 'styles', ->
 		.pipe s.stream()
 
 g.task 'html', ->
-	g.src '*.html'
+	g.src '*.pug'
 		.on 'error', $.notify.onError "HTML error: <%= error.message %>"
+		.pipe $.pug()
+			.on 'error', $.notify.onError "HTML error: <%= error.message %>"
+		.pipe g.dest path.dist
 		.pipe $.notify 'HTML reloaded!'
 		.pipe s.stream()
 
@@ -87,9 +90,9 @@ g.task 'watch', ->
 		open: false
 		# proxy: 'domain.local'
 		server:
-			baseDir: './'
+			baseDir: path.dist
 
-	g.watch ['*.html', '*.php'], g.parallel 'html', (done) ->
+	g.watch ['*.html', '*.php', '*.pug'], g.parallel 'html', (done) ->
 		done()
 		s.reload()
 	g.watch ['images/sprites/*.png'], g.parallel 'sprites'
