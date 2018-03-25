@@ -4,6 +4,7 @@
 
 ## Features
 
+- HTML served as [PUG](https://pugjs.org)s
 - Javascript: Babelify + Browserify with uglify & sourcemaps => [latest ES preset](https://babeljs.io/docs/plugins/preset-latest/)
 - Styles: LESS + autoprefix + [glob plugin](https://github.com/just-boris/less-plugin-glob)
 	- Pre-defined breakpoints
